@@ -38,3 +38,8 @@ vkAllocateMemory(device->device, &allocInfo, nullptr, &memory);
 vkMapMemory(device->device, memory, 0, size, 0, &data);
 vkBindBufferMemory(device->device, buffer, memory, 0);
 ```
+NOTE: VMA makes allocation simpler.
+
+Why do I need to allocate and map memory? Why can't `vkCreateBuffer` do that? `vkCreateBuffer` just creates buffer instance. But it is pointing to nothing on the GPU. That's why we need to find memory on the GPU, allocate it and say that we want to use buffer with allocation we got. OpenGL will combine all of that in one place. The thing is you use abstractions with OpenGL and so why can't you use them with Vulkan. 
+
+Even though you need 500 lines of code to init Vulkan with surface you write it one time and forget about it.
